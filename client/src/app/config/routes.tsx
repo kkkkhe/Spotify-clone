@@ -2,7 +2,7 @@ import { Callback } from "@/pages/Callback"
 import { Main } from "@/pages/Main"
 import { lazy } from "react"
 import { ReactNode } from "react"
-import { WithAuth } from "./protectedRoutes"
+import { Guard, WithAuth } from "./protectedRoutes"
 const Authentication = lazy(() => import('@/pages/Authentication'))
 export enum AppRoutes {
 	MAIN = "main",
@@ -14,13 +14,13 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.MAIN]: '/',
 	[AppRoutes.CALLBACK]: '/callback',
-	[AppRoutes.AUTHENTICATION]: '/login1'
+	[AppRoutes.AUTHENTICATION]: '/login'
 }
-
+//<WithAuth><Main /></WithAuth>
 export const routes: Record<AppRoutes, { Element: ReactNode, path: string }> = {
 	[AppRoutes.MAIN]: {
 		path: RoutePath.main,
-		Element: <Main />
+		Element: <WithAuth><Main /></WithAuth>
 	},
 	[AppRoutes.CALLBACK]: {
 		path: RoutePath.callback,
@@ -28,6 +28,6 @@ export const routes: Record<AppRoutes, { Element: ReactNode, path: string }> = {
 	},
 	[AppRoutes.AUTHENTICATION]: {
 		path: RoutePath.authentication,
-		Element: <Authentication />
+		Element: <Guard><Authentication /></Guard>
 	}
 }

@@ -1,26 +1,57 @@
+import { getToken, refreshToken } from "@/shared/api/apis";
+import { $api } from "@/shared/api/http";
 import { createBaseSelector } from "@/shared/lib/redux-hooks";
-import { createSelector, createSlice } from "@reduxjs/toolkit";
-const name = 'session/model'
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+  PayloadAction,
+} from "@reduxjs/toolkit";
+const name = "session/model";
 const initialState = {
-isAuthed: false
-}
-type State = typeof initialState
+  isAuthed: false,
+};
+type State = typeof initialState;
 const slice = createSlice({
-	name,
-	initialState,
-	reducers: {
-		setAuth(state){
-			state.isAuthed = true
-		}
-	}
-})
+  name,
+  initialState,
+  reducers: {
+    setAuth(state, action: PayloadAction<boolean>) {
+      state.isAuthed = action.payload;
+    },
+  },
+});
 
-const baseSelector = createBaseSelector<State>(name)
+const sessionThunk = createAsyncThunk(
+  "session/getToken",
+  async (action: any, { dispatch }) => {
+    await getToken(action).then((res) => {
+      dispatch(slice.actions.setAuth(true));
+      localStorage.setItem("token", res.data.access_token);
+      localStorage.setItem("refreshToken", res.data.refresh_token);
+    });
+  }
+);
+const checkAuth = createAsyncThunk(
+  "session/checkAuth",
+  async (action: any, { dispatch }) => {
+    await refreshToken(action).then((res) => {
+      dispatch(slice.actions.setAuth(true));
 
-const isAuthed = createSelector(baseSelector, (state) => state.isAuthed)
+      localStorage.setItem("token", res.data.access_token);
+    });
+  }
+);
+const baseSelector = createBaseSelector<State>(name);
+
+const isAuthed = createSelector(baseSelector, (state) => state.isAuthed);
 
 export const selector = {
-	isAuthed
-}
+  isAuthed,
+};
 
-export const reducer = {[name]: slice.reducer}
+export const thunk = {
+  sessionThunk,
+  checkAuth,
+};
+export const reducer = { [name]: slice.reducer };

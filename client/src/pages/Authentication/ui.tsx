@@ -1,8 +1,18 @@
+import { sessionModel } from "@/entities/session"
 import { SpotifyIcon } from "@/shared/assets/spotifyIcon"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-
+import { useAction, useAppSelector } from "@/shared/lib/redux-hooks"
+import { useEffect } from "react"
 export const Authentication = () => {
+	const code = window.location.href.split('code=')[1]
+	const login = useAction(sessionModel.thunk.sessionThunk)
+	const isAuthed = useAppSelector(sessionModel.selector.isAuthed)
+	let ignore = false
+	useEffect(() => {
+		if(code && !ignore){
+			login(code)
+			ignore = true
+		}
+	}, [])
 	return (
 		<div className="w-full h-screen bg-black flex items-center justify-center">
 			<div className="flex flex-col items-center">

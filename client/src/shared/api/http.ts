@@ -1,13 +1,13 @@
-import axios from "axios"
+import axios from "axios";
 
-export const baseURL = 'http://localhost:5000'
+export const baseURL = "http://localhost:5000";
 
 export const $api = axios.create({
-	baseURL,
-	// withCredentials: true
-})
+  baseURL,
+  withCredentials: true,
+});
 
-$api.interceptors.request.use((config:any):any => {
-	config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
-	return config
-})
+$api.interceptors.request.use((config: any): any => {
+  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  return config;
+});

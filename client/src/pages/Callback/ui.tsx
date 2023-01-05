@@ -1,5 +1,4 @@
 import { $api } from "@/shared/api/http";
-import axios from "axios"
 import { useEffect, useRef, useState } from "react"
 
 export const Callback = () => {
@@ -10,13 +9,7 @@ export const Callback = () => {
 	const a = false;
 	useEffect(() => {
 		let ignore = false;
-		$api.post('/callback', { code })
-			.then(res => {
-				if (res.data.access_token) {
-					console.log(res.data)
-					localStorage.setItem('token', res.data.access_token)
-				}
-			})
+
 	}, [])
 	return (
 		<div>
