@@ -1,11 +1,9 @@
-import { Callback } from "@/pages/Callback"
 import { Main } from "@/pages/Main"
 import { getPlaylists } from "@/shared/api"
-import { $api } from "@/shared/api/http"
 import { lazy } from "react"
-import { ReactNode } from "react"
 import { createBrowserRouter } from "react-router-dom"
 import { Guard, WithAuth } from "./protectedRoutes"
+import { RouteOptions } from "./types"
 const Authentication = lazy(() => import('@/pages/Authentication'))
 export enum AppRoutes {
 	MAIN = "main",
@@ -18,10 +16,12 @@ export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.AUTHENTICATION]: '/login'
 }
 
-export const routes: Record<AppRoutes, { Element: ReactNode, path: string }> = {
+export const routes: Record<AppRoutes, RouteOptions> = {
 	[AppRoutes.MAIN]: {
 		path: RoutePath.main,
-		Element: <WithAuth><Main /></WithAuth>
+		Element: <WithAuth><Main /></WithAuth>,
+		loader: getPlaylists
+
 	},
 	[AppRoutes.AUTHENTICATION]: {
 		path: RoutePath.authentication,
@@ -29,4 +29,6 @@ export const routes: Record<AppRoutes, { Element: ReactNode, path: string }> = {
 	}
 }
 
-export const router = createBrowserRouter(Object.values(routes).map(({path, Element, loader}:any) => ({path, element: Element, loader})));
+export const router = createBrowserRouter(
+	Object.values(routes).map(({path, Element, loader}:RouteOptions) => ({path, element: Element, loader}))
+);

@@ -1,6 +1,6 @@
-import { Axios, AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import { $api } from "./http";
-import { BaseAuthResponse } from "./types";
+import { BaseAuthResponse, PlaylistResponse } from "./types";
 
 export const getToken = async (
   code: string
@@ -8,8 +8,12 @@ export const getToken = async (
   return await $api.post("/", { code });
 };
 
-export const getPlaylists = async () => {
-  return await $api.get("https://api.spotify.com/v1/me/playlists");
+export const getPlaylists = async (): Promise<
+  AxiosResponse<PlaylistResponse>
+> => {
+  return await $api
+    .get("https://api.spotify.com/v1/me/playlists")
+    .then((res) => res.data);
 };
 
 export const refreshToken = async (

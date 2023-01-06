@@ -1,12 +1,20 @@
+import './style.css'
+
 export const MainLayout = ({Sidebar, children}:any) => {
 	return (
-		<div className="h-screen">
-			<div className="flex h-full">
+		<div className="h-screen w-full main">
+			<div className='sidebar'>
 				<Sidebar/>
-				<div>
+			</div>
+				<header className='header'>
+					header
+				</header>
+				<div className='children'>
 					{children}
 				</div>
-			</div>
+			<footer className="footer">
+				asd;ofasdf
+			</footer>
 		</div>
 	)
 }

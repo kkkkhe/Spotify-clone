@@ -4,8 +4,10 @@ import { Resizable } from "re-resizable"
 import { useEffect, useState } from "react"
 import { bottomActions, topActions } from "./config";
 import '@/shared/assets/fonts/CircularStdBold.ttf'
+import { useLoaderData } from "react-router-dom";
 export const Sidebar = () => {
 	const [state, setState] = useState({ width: 300});
+	const data = useLoaderData()
 	useEffect(() => {
 		console.log('effect')
 	}, [])
@@ -37,6 +39,9 @@ export const Sidebar = () => {
 								<SideButton label={label} Icon={Icon}/> 
 							</div>
 					})}
+				</div>
+				<div>
+					
 				</div>
 	 </Resizable>
 	)
