@@ -24,7 +24,7 @@ const slice = createSlice({
 
 const sessionThunk = createAsyncThunk(
   "session/getToken",
-  async (action: any, { dispatch }) => {
+  async (action: string, { dispatch }) => {
     await getToken(action).then((res) => {
       dispatch(slice.actions.setAuth(true));
       localStorage.setItem("token", res.data.access_token);
@@ -37,7 +37,6 @@ const checkAuth = createAsyncThunk(
   async (action: any, { dispatch }) => {
     await refreshToken(action).then((res) => {
       dispatch(slice.actions.setAuth(true));
-
       localStorage.setItem("token", res.data.access_token);
     });
   }

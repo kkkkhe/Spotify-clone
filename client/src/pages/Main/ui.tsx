@@ -1,18 +1,21 @@
-import { sessionModel } from "@/entities/session";
-import { $api } from "@/shared/api/http";
-import { useAction } from "@/shared/lib/redux-hooks";
-import { useEffect } from "react";
+import { getPlaylists } from "@/shared/api"
+import { MainLayout } from "@/shared/ui/Layouts"
+import { Sidebar } from "@/widgets/Sidebar"
+import { useEffect } from "react"
+import { useLoaderData } from "react-router-dom"
 
 export const Main = () => {
-	const onClick = () => {
-		console.log('click')
-	}
-	
+	// useEffect(() => {
+	// 	getPlaylists()
+	// }, [])
+	const data = useLoaderData()
+	console.log(data)
+	// console.log(data)
 	return (
-		<div>
-			<button onClick={() => onClick()}>
+		<MainLayout Sidebar={Sidebar}>
+			<button>
 				click
 			</button>
-		</div>
+		</MainLayout>
 	)
 }

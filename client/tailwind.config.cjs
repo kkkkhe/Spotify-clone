@@ -7,7 +7,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        green: '#1DB954'
+        green: '#1DB954',
+        dark: '#191414',
+        gray: '#b3b3b3'
+      },
+      fontFamily: {
+        'book': 'Book'
       }
     },
   },
