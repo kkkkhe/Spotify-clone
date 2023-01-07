@@ -54,7 +54,6 @@ app.post('/', (req, res) => {
 
 
 app.post('/refresh_token', (req, res) => {
-	// const { refresh_token } = req.query;
 	const refresh_token = req.body.refreshToken
 	axios({
 	  method: 'post',

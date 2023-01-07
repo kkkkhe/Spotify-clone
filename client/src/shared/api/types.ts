@@ -15,7 +15,7 @@ export type PlaylistResponse = {
   items: PlaylistItem[];
 };
 
-interface PlaylistItem {
+export interface PlaylistItem {
   collaborative: boolean;
   description: string;
   external_urls: { spotify: string };

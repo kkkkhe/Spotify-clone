@@ -1,5 +1,4 @@
 import { getToken, refreshToken } from "@/shared/api/apis";
-import { $api } from "@/shared/api/http";
 import { createBaseSelector } from "@/shared/lib/redux-hooks";
 import {
   createAsyncThunk,
@@ -48,7 +47,9 @@ const isAuthed = createSelector(baseSelector, (state) => state.isAuthed);
 export const selector = {
   isAuthed,
 };
-
+export const actions = {
+  setAuth: slice.actions.setAuth,
+};
 export const thunk = {
   sessionThunk,
   checkAuth,

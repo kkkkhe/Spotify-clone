@@ -1,16 +1,20 @@
 import { Suspense, useEffect } from 'react'
-import { Route, Routes, BrowserRouter, RouterProvider } from 'react-router-dom'
-import { router, routes } from './app/config'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './app/config'
+import '@/app/config/axios'
 import { sessionModel } from './entities/session'
-import { useAction, useAppSelector } from './shared/lib/redux-hooks'
+import { useAction } from './shared/lib/redux-hooks'
 import './shared/assets/fonts/CircularMedium.ttf';
 function App() {
   const checkAuth = useAction(sessionModel.thunk.checkAuth)
-  const isAuthed = useAppSelector(sessionModel.selector.isAuthed)
   const refreshToken = localStorage.getItem('refreshToken')
   useEffect(() => {
-    if(localStorage.getItem('token')){
+    let ignore = false
+    if(localStorage.getItem('token') && !ignore){
       checkAuth(refreshToken)
+    }
+    return () => {
+      ignore = true
     }
   }, [])
   return (

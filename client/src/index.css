@@ -31,7 +31,7 @@
  */
 
 html {
-	/* color: #ffffff62 */
+	color: #b1b1b1ab;
 	line-height: 1.15;
 	/* 1 */
 	-webkit-text-size-adjust: 100%;
@@ -48,6 +48,8 @@ html {
 body {
 	margin: 0;
 	background-color: #121212;
+	/* background-color: #121212; */
+	/* background-image: linear-gradient(to bottom, #525861, #42454c, #323337, #222224, #121212); */
 	color: white;
 }
 

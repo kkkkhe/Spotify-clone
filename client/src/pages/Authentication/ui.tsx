@@ -5,7 +5,6 @@ import { useEffect } from "react"
 export const Authentication = () => {
 	const code = window.location.href.split('code=')[1]
 	const login = useAction(sessionModel.thunk.sessionThunk)
-	const isAuthed = useAppSelector(sessionModel.selector.isAuthed)
 	let ignore = false
 	useEffect(() => {
 		if(code && !ignore){
