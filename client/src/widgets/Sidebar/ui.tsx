@@ -44,14 +44,14 @@ export const Sidebar = () => {
 					</div>
 				</div>
 				<div className=" scrollbar overflow-x-hidden scrollbar-thumb-[#4d4d4d] scrollbar-w-3">
-					<ul className="flex flex-col gap-3 h-[calc(100vh-448px)] p-6">
+					<ul className="flex flex-col gap-3 h-[calc(100vh-448px)] px-6 pb-6 pt-3">
 					{data?.items.map((playlist:PlaylistItem) => {
 						return (
-							<li key={playlist.id} className=" text-gray font-book text-sm hover:text-white transition-colors duration-150 ">
-								<Link to={`/playlist/${playlist.id}`}  className='overflow-x-hidden overflow-ellipsis whitespace-nowrap'>
+							<Link to={`/playlist/${playlist.id}`}  className='text-gray font-book text-sm hover:text-white transition-colors duration-150 '>
+								<li key={playlist.id} className="overflow-x-hidden overflow-ellipsis whitespace-nowrap">
 									{playlist.name}
-								</Link>
-							</li>
+								</li>
+							</Link>
 						)
 					})}
 					</ul>
