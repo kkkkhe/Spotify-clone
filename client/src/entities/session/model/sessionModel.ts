@@ -1,4 +1,3 @@
-import { getToken, refreshToken } from "@/shared/api/apis";
 import { createBaseSelector } from "@/shared/lib/redux-hooks";
 import {
   createAsyncThunk,
@@ -6,6 +5,7 @@ import {
   createSlice,
   PayloadAction,
 } from "@reduxjs/toolkit";
+import { getToken, refreshToken } from "../api/api";
 const name = "session/model";
 const initialState = {
   isAuthed: false,
@@ -35,6 +35,7 @@ const checkAuth = createAsyncThunk(
   "session/checkAuth",
   async (action: any, { dispatch }) => {
     await refreshToken(action).then((res) => {
+      console.log(res);
       dispatch(slice.actions.setAuth(true));
       localStorage.setItem("token", res.data.access_token);
     });

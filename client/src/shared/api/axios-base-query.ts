@@ -1,9 +1,6 @@
 import { BaseQueryFn } from "@reduxjs/toolkit/dist/query";
-import axios, {
-  AxiosError,
-  AxiosRequestConfig,
-  AxiosRequestHeaders,
-} from "axios";
+import { AxiosError, AxiosRequestConfig, AxiosRequestHeaders } from "axios";
+import { $api } from "../lib/interceptors";
 
 export const axiosBaseQuery =
   ({
@@ -26,7 +23,7 @@ export const axiosBaseQuery =
   > =>
   async ({ url, method, data, params }, api) => {
     try {
-      const result = await axios({ url: baseUrl + url, method, data, params });
+      const result = await $api({ url: baseUrl + url, method, data, params });
       return { data: result.data };
     } catch (axiosError) {
       let err = axiosError as AxiosError;

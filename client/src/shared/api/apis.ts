@@ -1,23 +1,30 @@
 import { AxiosResponse } from "axios";
-import { $api } from "./http";
-import { BaseAuthResponse, PlaylistResponse } from "./types";
+import { $api } from "../lib/interceptors";
+import { PlaylistResponse } from "./types";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { axiosBaseQuery } from "./axios-base-query";
 
-export const getToken = async (
-  code: string
-): Promise<AxiosResponse<BaseAuthResponse & { scope: string }>> => {
-  return await $api.post("/", { code });
+export const baseURL = import.meta.env.BASE_URL;
+
+// console.log(import.meta.env.BASE_URL);
+export const spotifyApi = createApi({
+  reducerPath: "spotifyApi",
+  baseQuery: axiosBaseQuery({
+    baseUrl: "https://api.spotify.com/v1/",
+  }),
+  endpoints: (builder) => ({
+    getPersonalPlaylists: builder.query({
+      query: () => ({ url: "me/playlists", method: "get" }),
+    }),
+  }),
+});
+
+const getPlaylists = async (): Promise<AxiosResponse<PlaylistResponse>> => {
+  const res = await $api.get("https://api.spotify.com/v1/me/playlists");
+  const data = await res.data;
+  return data;
 };
 
-export const getPlaylists = async (): Promise<
-  AxiosResponse<PlaylistResponse>
-> => {
-  return await $api
-    .get("https://api.spotify.com/v1/me/playlists")
-    .then((res) => res.data);
-};
+export { getPlaylists };
 
-export const refreshToken = async (
-  refreshToken: string
-): Promise<AxiosResponse<BaseAuthResponse>> => {
-  return await $api.post("/refresh_token", { refreshToken });
-};
+export const { useGetPersonalPlaylistsQuery } = spotifyApi;

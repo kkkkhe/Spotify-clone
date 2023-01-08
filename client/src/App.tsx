@@ -1,7 +1,6 @@
 import { Suspense, useEffect } from 'react'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './app/config'
-import '@/app/config/axios'
 import { sessionModel } from './entities/session'
 import { useAction } from './shared/lib/redux-hooks'
 import './shared/assets/fonts/CircularMedium.ttf';
@@ -11,7 +10,7 @@ function App() {
   useEffect(() => {
     let ignore = false
     if(localStorage.getItem('token') && !ignore){
-      checkAuth(refreshToken)
+      // checkAuth(refreshToken)
     }
     return () => {
       ignore = true

@@ -1,5 +1,5 @@
 import { Main } from "@/pages/Main"
-import { getPlaylists } from "@/shared/api"
+// import { getPlaylists } from "@/shared/api"
 import { lazy } from "react"
 import { createBrowserRouter } from "react-router-dom"
 import { Guard, WithAuth } from "./protectedRoutes"
@@ -20,7 +20,7 @@ export const routes: Record<AppRoutes, RouteOptions> = {
 	[AppRoutes.MAIN]: {
 		path: RoutePath.main,
 		Element: <WithAuth><Main /></WithAuth>,
-		loader: getPlaylists
+		// loader: getPlaylists
 
 	},
 	[AppRoutes.AUTHENTICATION]: {

@@ -1,24 +1,8 @@
-import axios, { AxiosRequestConfig } from "axios";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { axiosBaseQuery } from "./axios-base-query";
+import axios from "axios";
 
-export const baseURL = "http://localhost:5000";
 export const $api = axios.create({
-  baseURL,
+  baseURL: "http://localhost:5000",
 });
-export const $httpApi = createApi({
-  reducerPath: "httpApi",
-  baseQuery: axiosBaseQuery({
-    baseUrl: "https://jsonplaceholder.typicode.com/",
-  }),
-  endpoints: (builder) => ({
-    getTasks: builder.query({
-      query: () => ({ url: "todos", method: "get" }),
-    }),
-  }),
-});
-
-export const { useGetTasksQuery } = $httpApi;
 
 $api.interceptors.request.use((config: any): any => {
   config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
