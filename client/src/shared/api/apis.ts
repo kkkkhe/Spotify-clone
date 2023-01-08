@@ -1,30 +1,21 @@
-import { AxiosResponse } from "axios";
-import { $api } from "../lib/interceptors";
-import { PlaylistResponse } from "./types";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "./axios-base-query";
+import { PlaylistResponse } from "./types";
 
-export const baseURL = import.meta.env.BASE_URL;
-
-// console.log(import.meta.env.BASE_URL);
 export const spotifyApi = createApi({
   reducerPath: "spotifyApi",
   baseQuery: axiosBaseQuery({
-    baseUrl: "https://api.spotify.com/v1/",
+    baseUrl: import.meta.env.VITE_BASEURL,
   }),
   endpoints: (builder) => ({
-    getPersonalPlaylists: builder.query({
-      query: () => ({ url: "me/playlists", method: "get" }),
+    getPersonalPlaylists: builder.query<PlaylistResponse, { limit?: number }>({
+      query: ({ limit = 20 }) => ({
+        url: "me/playlists",
+        method: "get",
+        params: { limit },
+      }),
     }),
   }),
 });
-
-const getPlaylists = async (): Promise<AxiosResponse<PlaylistResponse>> => {
-  const res = await $api.get("https://api.spotify.com/v1/me/playlists");
-  const data = await res.data;
-  return data;
-};
-
-export { getPlaylists };
 
 export const { useGetPersonalPlaylistsQuery } = spotifyApi;

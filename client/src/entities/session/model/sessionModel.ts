@@ -35,7 +35,6 @@ const checkAuth = createAsyncThunk(
   "session/checkAuth",
   async (action: any, { dispatch }) => {
     await refreshToken(action).then((res) => {
-      console.log(res);
       dispatch(slice.actions.setAuth(true));
       localStorage.setItem("token", res.data.access_token);
     });

@@ -13,6 +13,9 @@ module.exports = {
       },
       fontFamily: {
         'book': 'Book'
+      },
+      gridTemplateColumns: {
+        'cards': 'repeat(auto-fill, minmax(150px, 200px))'
       }
     },
   },

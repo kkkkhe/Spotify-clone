@@ -10,10 +10,7 @@ function App() {
   useEffect(() => {
     let ignore = false
     if(localStorage.getItem('token') && !ignore){
-      // checkAuth(refreshToken)
-    }
-    return () => {
-      ignore = true
+      checkAuth(refreshToken)
     }
   }, [])
   return (
