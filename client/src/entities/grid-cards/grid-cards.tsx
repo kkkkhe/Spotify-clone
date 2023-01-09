@@ -9,6 +9,7 @@ interface Card {
 	}[],
 	owner:any
 }
+
 // TODO SKELETON
 export const GridCards = <T extends Card,>({data, title, elems}: {data?: T[], title: string, elems?:number}) => {
     return (
