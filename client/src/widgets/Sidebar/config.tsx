@@ -1,12 +1,12 @@
 import { HomeSvg, LikeSvg, MediaLibrary, PlaylistSvg, SearchSvg } from "./assets";
 
 export const topActions = [
-	{label: "Home", Icon: HomeSvg},
-	{label: "Search", Icon: SearchSvg},
-	{label: "Your Library", Icon: MediaLibrary}
+	{label: "Home", Icon: HomeSvg, link: '/'},
+	{label: "Search", Icon: SearchSvg, link: 'search'},
+	{label: "Your Library", Icon: MediaLibrary, link: 'collection/playlist',}
 ]
 
 export const bottomActions = [
-	{label: "Create Playlist", Icon: PlaylistSvg},
-	{label: "Liked Songs", Icon: LikeSvg},
+	{label: "Create Playlist", Icon: PlaylistSvg, link: '/'},
+	{label: "Liked Songs", Icon: LikeSvg, link: 'tracks'},
 ]

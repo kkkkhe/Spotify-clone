@@ -9,13 +9,19 @@ export const spotifyApi = createApi({
   }),
   endpoints: (builder) => ({
     getPersonalPlaylists: builder.query<PlaylistResponse, { limit?: number }>({
-      query: ({ limit = 20 }) => ({
+      query: ({ limit }) => ({
         url: "me/playlists",
-        method: "get",
+        params: { limit },
+      }),
+    }),
+    getFeaturedPlaylists: builder.query<any, any>({
+      query: ({ limit }) => ({
+        url: "browse/featured-playlists",
         params: { limit },
       }),
     }),
   }),
 });
 
-export const { useGetPersonalPlaylistsQuery } = spotifyApi;
+export const { useGetPersonalPlaylistsQuery, useGetFeaturedPlaylistsQuery } =
+  spotifyApi;

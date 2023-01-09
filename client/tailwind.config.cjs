@@ -12,7 +12,7 @@ module.exports = {
         gray: '#b3b3b3'
       },
       fontFamily: {
-        'book': 'Book'
+        // 'book': 'Book'
       },
       gridTemplateColumns: {
         'cards': 'repeat(auto-fill,minmax(150px, 200px))'

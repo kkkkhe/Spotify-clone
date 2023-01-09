@@ -2,7 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+*{
+	font-family: 'Source Sans Pro';
+}
 /* Document
    ========================================================================== */
 @font-face{
@@ -22,7 +24,8 @@
 }
 @layer base {
 	html {
-	  font-family: "Medium", system-ui, sans-serif;
+	  /* font-family: "Medium", system-ui, sans-serif; */
+	  font-family: 'book1';
 	}
   }
 /**

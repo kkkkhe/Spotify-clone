@@ -3,7 +3,6 @@ import { RouterProvider } from 'react-router-dom'
 import { router } from './app/config'
 import { sessionModel } from './entities/session'
 import { useAction } from './shared/lib/redux-hooks'
-import './shared/assets/fonts/CircularMedium.ttf';
 function App() {
   const checkAuth = useAction(sessionModel.thunk.checkAuth)
   const refreshToken = localStorage.getItem('refreshToken')

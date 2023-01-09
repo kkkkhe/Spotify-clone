@@ -1,12 +1,20 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import * as path from 'path'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import { VitePluginFonts } from "vite-plugin-fonts";
+import * as path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    VitePluginFonts({
+      google: {
+        families: ["Source Sans Pro"],
+      },
+    }),
+  ],
   resolve: {
     alias: {
-      '@' : path.resolve(__dirname, './src')
-    }
-  }
-})
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+});

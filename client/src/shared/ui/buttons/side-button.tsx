@@ -1,12 +1,15 @@
+import { Link } from "react-router-dom"
+
 interface SideButton {
 	label: string
 	Icon: any
+	link: string
 }
-export const SideButton = ({label, Icon}: SideButton) => {
+export const SideButton = ({label, Icon, link}: SideButton) => {
 	return (
-		<button className="flex items-center text-gray text-[14px] gap-3 font-thin w-full py-[6px] hover:text-white transition-colors duration-150">
+		<Link to={link} className="flex items-center text-gray text-[14px] gap-3 font-bold w-full py-[6px] hover:text-white transition-colors duration-150">
 			<Icon/>
 			{label}
-		</button>
+		</Link>
 	)
 }
