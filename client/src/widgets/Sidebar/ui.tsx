@@ -16,6 +16,7 @@ export const Sidebar = memo(() => {
 		size={{ width: state.width, height: '100%'}}
 		maxWidth={300}
 		minWidth={120}
+		maxHeight={'100%'}
 		enable={{top: false, bottomLeft: false, right: true}}
 		onResizeStop={(e, direction, ref, d) => {
 			setState({
@@ -47,7 +48,7 @@ export const Sidebar = memo(() => {
 					<ul className="flex flex-col gap-3 h-[calc(100vh-448px)] px-6 pb-6 pt-3">
 					{data?.items.map((playlist:PlaylistItem) => {
 						return (
-							<Link key={playlist.id} to={`/playlist/${playlist.id}`}  className='text-gray font-book text-sm hover:text-white transition-colors duration-150 '>
+							<Link key={playlist.id} to={`/playlist/${playlist.id}`}  className='text-gray font-book text-sm hover:text-white transition-colors duration-150'>
 								<li  className="overflow-x-hidden overflow-ellipsis whitespace-nowrap">
 									{playlist.name}
 								</li>
