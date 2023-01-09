@@ -1,13 +1,13 @@
 import { SpotifyIcon } from "@/shared/assets/spotifyIcon";
 import { SideButton } from "@/shared/ui/buttons";
 import { Resizable } from "re-resizable"
-import { useState } from "react"
+import { memo, useState } from "react"
 import { bottomActions, topActions } from "./config";
 import '@/shared/assets/fonts/CircularStdBold.ttf'
 import '@/shared/assets/fonts/CircularStdBook.ttf'
 import { Link } from "react-router-dom";
 import { PlaylistItem, useGetPersonalPlaylistsQuery } from "@/shared/api";
-export const Sidebar = () => {
+export const Sidebar = memo(() => {
 	const [state, setState] = useState({ width: 300});
 	const {data, isFetching} = useGetPersonalPlaylistsQuery({})
 	return (
@@ -47,8 +47,8 @@ export const Sidebar = () => {
 					<ul className="flex flex-col gap-3 h-[calc(100vh-448px)] px-6 pb-6 pt-3">
 					{data?.items.map((playlist:PlaylistItem) => {
 						return (
-							<Link to={`/playlist/${playlist.id}`}  className='text-gray font-book text-sm hover:text-white transition-colors duration-150 '>
-								<li key={playlist.id} className="overflow-x-hidden overflow-ellipsis whitespace-nowrap">
+							<Link key={playlist.id} to={`/playlist/${playlist.id}`}  className='text-gray font-book text-sm hover:text-white transition-colors duration-150 '>
+								<li  className="overflow-x-hidden overflow-ellipsis whitespace-nowrap">
 									{playlist.name}
 								</li>
 							</Link>
@@ -58,4 +58,4 @@ export const Sidebar = () => {
 				</div>
 	 </Resizable>
 	)
-}
+})
