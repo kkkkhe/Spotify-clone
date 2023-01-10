@@ -3,8 +3,8 @@ import { SideButton } from "@/shared/ui/buttons";
 import { Resizable } from "re-resizable"
 import { memo, useState } from "react"
 import { bottomActions, topActions } from "./config";
-import { Link } from "react-router-dom";
 import { PlaylistItem, useGetPersonalPlaylistsQuery } from "@/shared/api";
+import { Link } from "react-router-dom";
 export const Sidebar = memo(() => {
 	const [state, setState] = useState({ width: 300});
 	const {data, isFetching} = useGetPersonalPlaylistsQuery({})
@@ -46,7 +46,7 @@ export const Sidebar = memo(() => {
 					<ul className="flex flex-col gap-3 h-[calc(100vh-448px)] px-6 pb-6 pt-3">
 					{data?.items.map((playlist:PlaylistItem) => {
 						return (
-							<Link key={playlist.id} to={`/playlist/${playlist.id}`}  className='text-gray  hover:text-white transition-colors duration-150'>
+							<Link to={`playlist/${playlist.id}`} key={playlist.id}  className='text-gray  hover:text-white transition-colors duration-150'>
 								<li  className="overflow-hidden font-medium text-sm overflow-ellipsis whitespace-nowrap">
 									{playlist.name}
 								</li>
