@@ -16,7 +16,7 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.MAIN]: '/',
 	[AppRoutes.AUTHENTICATION]: '/login',
-	[AppRoutes.COLLECTION_PLAYLISTS]: 'collection/playlist'
+	[AppRoutes.COLLECTION_PLAYLISTS]: 'collection/playlists'
 }
 
 export const routes: Record<AppRoutes, RouteOptions> = {

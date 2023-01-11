@@ -20,8 +20,16 @@ export const spotifyApi = createApi({
         params: { limit },
       }),
     }),
+    getCurrectPlayingTrack: builder.query({
+      query: () => ({
+        url: "me/player/currently-playing",
+      }),
+    }),
   }),
 });
 
-export const { useGetPersonalPlaylistsQuery, useGetFeaturedPlaylistsQuery } =
-  spotifyApi;
+export const {
+  useGetPersonalPlaylistsQuery,
+  useGetFeaturedPlaylistsQuery,
+  useGetCurrectPlayingTrackQuery,
+} = spotifyApi;

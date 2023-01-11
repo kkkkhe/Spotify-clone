@@ -16,7 +16,7 @@ export const Main = () => {
 	  });
 	return (
 		<MainLayout Sidebar={Sidebar}>
-			<div ref={ref} className="px-8 py-6 w-full flex flex-col gap-14">
+			<div ref={ref} className="w-full flex flex-col gap-14">
 				<GridCards data={personalPlaylists?.items} title={'Your Playlists'} elems={elems} link={'me/playlists'}/>
 				<GridCards data={featuredPlaylists?.playlists?.items} title={'Featured Playlists'} elems={elems} link={'browse/featured-playlists'}/>
 			</div>

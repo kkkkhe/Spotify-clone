@@ -12,7 +12,7 @@ app.use(cookieParser())
 var redirect_uri = 'http://127.0.0.1:5173/login';
 
 app.get('/login', function (req, res) {
-	var scope = 'user-read-private user-read-email ugc-image-upload playlist-read-private playlist-modify-private playlist-modify-public user-follow-read user-follow-modify user-read-playback-position user-top-read user-read-recently-played';
+	var scope = 'user-read-currently-playing user-modify-playback-state app-remote-control streaming user-read-playback-state user-read-private user-read-email ugc-image-upload playlist-read-private playlist-modify-private playlist-modify-public user-follow-read user-follow-modify user-read-playback-position user-top-read user-read-recently-played';
 	res.redirect('https://accounts.spotify.com/authorize?' +
 		querystring.stringify({
 			response_type: 'code',
