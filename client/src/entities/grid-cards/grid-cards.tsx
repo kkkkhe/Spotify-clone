@@ -1,5 +1,6 @@
 
 import { Card } from '@/shared/ui/card'
+import { CardSkeleton } from '@/shared/ui/skeleton'
 import { Link } from 'react-router-dom'
 import './style.css'
 interface Card {
@@ -12,7 +13,15 @@ interface Card {
 	owner:any
 }
 // TODO SKELETON
-export const GridCards = <T extends Card,>({data = [], title, elems, link}: {data?: T[], title: string, elems?:number, link:string}) => {
+export const GridCards = <T extends Card,>({data = [], title, elems, link, isLoading}:
+	{data?: T[],
+	title:string,
+	elems?:number,
+	isLoading: boolean
+	link:string}
+	) => {
+		const skeletArr = new Array(elems).fill(0)
+		console.log(isLoading)
     return (
 		<div className=''>
 			<div className='flex justify-between items-center'>
@@ -20,13 +29,22 @@ export const GridCards = <T extends Card,>({data = [], title, elems, link}: {dat
 				{data.length > elems! && <Link className='font-semibold text-[13px] hover:underline text-gray' to={`/section/${link.split('/')[1]}`}>SHOW ALL</Link>}
 			</div>
 			<div style={{gridTemplateColumns: `repeat(${elems}, minmax(150px,230px))`}} className={` grid grid-rows-1 gap-5 gridBox`}>
-				{data?.slice(0, elems).map(({name, images, owner: {display_name}}) => {
+				{isLoading?
+				skeletArr.map((_,id) => {
 					return (
-						<div key={name}>
-							<Card name={name} images={images} info={display_name}/>
+						<div key={id}>
+							<CardSkeleton/>
 						</div>
 					)
-				})}
+				})
+				: data?.slice(0, elems).map(({name, images, owner: {display_name}}) => {
+					return (
+						<div key={name}>
+							<Card name={name} images={images} info={display_name} isLoading={isLoading}/>
+						</div>
+					)
+				})
+			}
 			</div>
 		</div>
 	)

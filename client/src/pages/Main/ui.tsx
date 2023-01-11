@@ -8,8 +8,8 @@ import { useResizeDetector } from "react-resize-detector"
 
 export const Main = () => {
 	const [elems, setElems] = useState()
-	const {data:personalPlaylists, isLoading} = useGetPersonalPlaylistsQuery({limit: 10})
-	const {data:featuredPlaylists} = useGetFeaturedPlaylistsQuery({limit:10})
+	const {data:personalPlaylists, isLoading: personalLoading} = useGetPersonalPlaylistsQuery({limit: 10})
+	const {data:featuredPlaylists, isLoading:featureLoading} = useGetFeaturedPlaylistsQuery({limit:10})
 	const { width, ref } = useResizeDetector({
 		handleHeight: false,
 		onResize: (width) => onResize(width, setElems)
@@ -17,8 +17,8 @@ export const Main = () => {
 	return (
 		<MainLayout Sidebar={Sidebar}>
 			<div ref={ref} className="w-full flex flex-col gap-14">
-				<GridCards data={personalPlaylists?.items} title={'Your Playlists'} elems={elems} link={'me/playlists'}/>
-				<GridCards data={featuredPlaylists?.playlists?.items} title={'Featured Playlists'} elems={elems} link={'browse/featured-playlists'}/>
+				<GridCards data={personalPlaylists?.items} title={'Your Playlists'} elems={elems} link={'me/playlists'} isLoading={personalLoading}/>
+				<GridCards data={featuredPlaylists?.playlists?.items} title={'Featured Playlists'} elems={elems} link={'browse/featured-playlists'} isLoading={featureLoading}/>
 			</div>
 		</MainLayout>
 	)

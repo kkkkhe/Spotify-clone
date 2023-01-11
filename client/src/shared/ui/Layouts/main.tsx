@@ -1,11 +1,7 @@
-import { useGetCurrectPlayingTrackQuery } from '@/shared/api'
-import { useEffect, useState } from 'react'
 import { Header } from '../header'
 import './style.css'
 
 export const MainLayout = ({Sidebar, children}:any) => {
-const {data} = useGetCurrectPlayingTrackQuery({})
-console.log(data)
 	return (
 		<div className="h-screen w-full main relative">
 				<Sidebar/>
