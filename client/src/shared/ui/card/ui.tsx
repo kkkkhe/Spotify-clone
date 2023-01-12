@@ -8,9 +8,6 @@ interface Card {
 	type: string
 }
 
-
-
-
 export const Card = ({name, info, images, id, type}:Card) => {
 	return (
 		<div className="bg-[#181818] rounded-[5px] self-center justify-self-center w-full hover:bg-[#262626] transition-colors duration-150">
