@@ -8,9 +8,10 @@ import { Link } from "react-router-dom";
 export const Sidebar = memo(() => {
 	const [state, setState] = useState({ width: 300});
 	const {data, isFetching} = useGetPersonalPlaylistsQuery({})
+	//[#b1b1b1ab]
 	return (
 		<Resizable
-		className='bg-black hover:border-r-[1px] border-r-[#b1b1b1ab] flex flex-col sidebar'
+		className='bg-black flex flex-col sidebar relative z-[4] before:content-[""] before:w-[6px] before:z-20 before:h-full before:absolute before:right-0 before:hover:border-r-[1px] before:border-[#b1b1b1ab]'
 		size={{ width: state.width, height: '100%'}}
 		maxWidth={300}
 		minWidth={120}

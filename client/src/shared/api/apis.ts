@@ -14,15 +14,16 @@ export const spotifyApi = createApi({
         params: { limit },
       }),
     }),
-    getFeaturedPlaylists: builder.query<any, any>({
+    getFeaturedPlaylists: builder.query<any, { limit?: number }>({
       query: ({ limit }) => ({
         url: "browse/featured-playlists",
         params: { limit },
       }),
     }),
-    getCurrectPlayingTrack: builder.query({
-      query: () => ({
-        url: "me/player/currently-playing",
+    getFollowedTracks: builder.query<any, { limit?: number }>({
+      query: ({ limit }) => ({
+        url: "me/tracks",
+        params: { limit },
       }),
     }),
   }),
@@ -31,5 +32,5 @@ export const spotifyApi = createApi({
 export const {
   useGetPersonalPlaylistsQuery,
   useGetFeaturedPlaylistsQuery,
-  useGetCurrectPlayingTrackQuery,
+  useGetFollowedTracksQuery,
 } = spotifyApi;

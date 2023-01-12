@@ -6,6 +6,7 @@ import { Sidebar } from "@/widgets/Sidebar"
 import { useState } from "react"
 import { useResizeDetector } from "react-resize-detector"
 
+
 export const Main = () => {
 	const [elems, setElems] = useState()
 	const {data:personalPlaylists, isLoading: personalLoading} = useGetPersonalPlaylistsQuery({limit: 10})
@@ -18,8 +19,7 @@ export const Main = () => {
 		<MainLayout Sidebar={Sidebar}>
 			<div ref={ref} className="w-full flex flex-col gap-14">
 				<GridCards data={personalPlaylists?.items} title={'Your Playlists'} elems={elems} link={'me/playlists'} isLoading={personalLoading}/>
-				<GridCards data={featuredPlaylists?.playlists?.items} title={'Featured Playlists'} elems={elems} link={'browse/featured-playlists'} isLoading={featureLoading}/>
-			</div>
+				<GridCards data={featuredPlaylists?.playlists?.items} title={'Featured Playlists'} elems={elems} link={'browse/featured-playlists'} isLoading={featureLoading}/>			</div>
 		</MainLayout>
 	)
 }
