@@ -2,6 +2,7 @@ import { Header } from '../header'
 import './style.css'
 
 
+
 export const MainLayout = ({Sidebar, children}:any) => {
 	return (
 		<div className="h-screen w-full main relative">
