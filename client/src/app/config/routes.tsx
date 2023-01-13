@@ -1,22 +1,25 @@
 import { CollectionPlaylists } from "@/pages/Collections"
 import { Main } from "@/pages/Main"
-// import { getPlaylists } from "@/shared/api"
 import { lazy } from "react"
 import { createBrowserRouter } from "react-router-dom"
 import { Guard, WithAuth } from "./protectedRoutes"
 import { RouteOptions } from "./types"
+
 const Authentication = lazy(() => import('@/pages/Authentication'))
+const Playlist = lazy(() => import('@/pages/Playlist'))
 export enum AppRoutes {
 	MAIN = "main",
 	AUTHENTICATION = 'authentication',
-	COLLECTION_PLAYLISTS = 'collection_playlists'
+	COLLECTION_PLAYLISTS = 'collection_playlists',
+	Playlist = 'playlist'
 }
 
 
 export const RoutePath: Record<AppRoutes, string> = {
 	[AppRoutes.MAIN]: '/',
 	[AppRoutes.AUTHENTICATION]: '/login',
-	[AppRoutes.COLLECTION_PLAYLISTS]: 'collection/playlists'
+	[AppRoutes.COLLECTION_PLAYLISTS]: '/collection/playlists',
+	[AppRoutes.Playlist]: '/playlist/:id'
 }
 
 export const routes: Record<AppRoutes, RouteOptions> = {
@@ -32,6 +35,10 @@ export const routes: Record<AppRoutes, RouteOptions> = {
 	[AppRoutes.COLLECTION_PLAYLISTS]: {
 		path: RoutePath.collection_playlists,
 		Element: <CollectionPlaylists/>
+	},
+	[AppRoutes.Playlist]: {
+		path: RoutePath.playlist,
+		Element: <Playlist/>
 	}
 }
 

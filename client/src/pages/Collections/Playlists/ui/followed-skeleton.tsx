@@ -5,7 +5,7 @@ export const FollowedSkeleton = () => {
 		<ContentLoader 
 		speed={2}
 		width={360}
-		height={120}
+		height={100}
 		viewBox="0 0 360 120"
 		backgroundColor="#7a5cf1"
 		foregroundColor="#919191"

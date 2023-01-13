@@ -1,4 +1,4 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
+import { createApi, QueryStatus } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "./axios-base-query";
 import { PlaylistResponse } from "./types";
 
@@ -26,6 +26,20 @@ export const spotifyApi = createApi({
         params: { limit },
       }),
     }),
+    getPlaylist: builder.query<any, { playlist_id?: string; limit: number }>({
+      query: ({ playlist_id, limit }) => ({
+        url: `playlists/${playlist_id}`,
+      }),
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
+      merge: ({ currentCache, newItem }) => {
+        currentCache.push(...newItem);
+      },
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
+      },
+    }),
   }),
 });
 
@@ -33,4 +47,5 @@ export const {
   useGetPersonalPlaylistsQuery,
   useGetFeaturedPlaylistsQuery,
   useGetFollowedTracksQuery,
+  useGetPlaylistQuery,
 } = spotifyApi;

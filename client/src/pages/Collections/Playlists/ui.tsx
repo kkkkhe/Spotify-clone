@@ -16,14 +16,14 @@ export const CollectionPlaylists = () => {
 	console.log(personalPlaylists?.items?.length)
 	return (
 		<MainLayout Sidebar={Sidebar}>
-			<div>
+			<div className="px-8 py-6">
 			<h2 className="text-[32px] mb-3 font-bold">Playlists</h2>
 				<div>
 					<div className="grid grid-cols-[repeat(auto-fit,minmax(150px,max-content))] gap-5">
 						<div className="bg-gradient-to-br from-[#450af5] via-{#450af5} to-[#8d8de5] grid col-span-2 rounded-[5px]">
-							<div className="px-5 py-6 flex flex-col">
+							<div className="px-5 py-6 flex flex-col flex-end">
 								<div className="font-medium flex-1 items-end flex">
-									<div className="whitespace-normal overflow-hidden ">
+									<div className="whitespace-normal overflow-hidden">
 										{followedTrackLoading? <FollowedSkeleton/>
 										: followedTracks?.items.map(({track}:any) => {
 											return (
