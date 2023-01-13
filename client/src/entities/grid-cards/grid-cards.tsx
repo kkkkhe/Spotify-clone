@@ -29,7 +29,7 @@ export const GridCards = <T extends Card,>({data = [], title, elems, link, isLoa
 				<h2 className="text-[32px] mb-3 font-bold">{title}</h2>
 				{data.length > elems! && <Link className='font-semibold text-[13px] hover:underline text-gray' to={`/section/${link.split('/')[1]}`}>SHOW ALL</Link>}
 			</div>
-			<div className={`grid grid-rows-1 grid-cols-[repeat(auto-fit,minmax(150px,max-content))] gap-5 gridBox`}>
+			<div className={`grid grid-cols-[repeat(auto-fit,minmax(150px,max-content))] gap-5`}>
 				{isLoading?
 				skeletArr.map((_,id) => {
 					return (
