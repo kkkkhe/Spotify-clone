@@ -1,0 +1,2 @@
+# spoti-app
+Spotify clone
