@@ -19,9 +19,10 @@ export const Main = () => {
 	  });
 	return (
 		<MainLayout Sidebar={Sidebar}>
-			<div ref={ref} className="w-full flex flex-col gap-14 px-8 py-6">
+			<div ref={ref} className="w-full flex flex-col gap-14 px-8 py-6 max-w-[2100px]">
 				<GridCards data={personalPlaylists?.items} title={'Your Playlists'} elems={elems} link={'me/playlists'} isLoading={personalLoading}/>
-				<GridCards data={featuredPlaylists?.playlists?.items} title={'Featured Playlists'} elems={elems} link={'browse/featured-playlists'} isLoading={featureLoading}/>			</div>
+				<GridCards data={featuredPlaylists?.playlists?.items} title={'Featured Playlists'} elems={elems} link={'browse/featured-playlists'} isLoading={featureLoading}/>
+			</div>
 		</MainLayout>
 	)
 }

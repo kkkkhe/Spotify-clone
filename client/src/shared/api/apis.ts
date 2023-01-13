@@ -26,8 +26,8 @@ export const spotifyApi = createApi({
         params: { limit },
       }),
     }),
-    getPlaylist: builder.query<any, { playlist_id?: string; limit: number }>({
-      query: ({ playlist_id, limit }) => ({
+    getPlaylist: builder.query<any, { playlist_id?: string }>({
+      query: ({ playlist_id }) => ({
         url: `playlists/${playlist_id}`,
       }),
       serializeQueryArgs: ({ endpointName }) => {

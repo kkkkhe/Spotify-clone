@@ -16,7 +16,7 @@ export const CollectionPlaylists = () => {
 	console.log(personalPlaylists?.items?.length)
 	return (
 		<MainLayout Sidebar={Sidebar}>
-			<div className="px-8 py-6">
+			<div className="px-8 py-6 max-w-[2100px]">
 			<h2 className="text-[32px] mb-3 font-bold">Playlists</h2>
 				<div>
 					<div className="grid grid-cols-[repeat(auto-fit,minmax(150px,max-content))] gap-5">
