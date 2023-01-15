@@ -14,7 +14,7 @@ export const PlaylistPreview = ({url, name, owner, total, type, description}: Pl
 			</div>
 			<div className="font-semibold flex flex-col gap-2 whitespace-nowrap">
 				<h3 className="">{type}</h3>
-				<h2 className="text-[96px]">{name}</h2>
+				<h2 className="xl:text-[96px] text-[66px]">{name}</h2>
 				<p className="text-sm text-gray">{description}</p>
 				<div className="flex relative text-sm gap-2">
 					<span>{owner}</span>
