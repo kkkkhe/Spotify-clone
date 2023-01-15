@@ -1,4 +1,4 @@
-import { NavigationButton } from "../buttons/navigation-button"
+import { NavigationButton } from "../buttons"
 
 export const Header = () => {
 	return (

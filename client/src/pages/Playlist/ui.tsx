@@ -4,7 +4,7 @@ import { MainLayout } from "@/shared/ui/Layouts"
 import { PlaylistPreview } from "@/widgets/playlist-preview"
 import { Sidebar } from "@/widgets/Sidebar"
 import { TrackCard } from "@/widgets/track-card"
-import { useState } from "react"
+import { Fragment, useState } from "react"
 import { useResizeDetector } from "react-resize-detector"
 import { useLocation, useParams } from "react-router-dom"
 import { WatchSvg } from "./assets"
@@ -33,15 +33,21 @@ const Playlist = () => {
 				</div>
 				<div ref={ref} className="border-b-[1px] border-white border-opacity-50 mb-5 max-w-[2100px]">
 					<div className={`px-6 py-2 text-gray text-sm grid ${grids} items-center`}>
-						<span className="text-base">#</span>
-						<span>TITLE</span>
+						<span className="text-base text-end pr-5">#</span>
+						<span className="">TITLE</span>
 						<span className={`${(width && width < 536) && 'hidden'}`}>ALBUM</span>
 						<span className={`${(width && width < 791) && 'hidden'}`}>DATA ADDED</span>
 						<span><WatchSvg/></span>
 					</div>
 				</div>
 				<div className="max-w-[2100px]">
-					<TrackCard tracks={playlist?.tracks?.items} width={width} grids={grids}/>
+					{playlist?.tracks?.items.map(({added_at, track}:any, id:number) => {
+						return (
+							<Fragment key={id}>
+								<TrackCard width={width} grids={grids} added_at={added_at} id={id} track={track}/>
+							</Fragment>
+						)
+					})}
 				</div>
 			</div>
 		</MainLayout>
