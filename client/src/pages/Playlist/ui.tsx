@@ -1,4 +1,4 @@
-import { useGetPlaylistQuery } from "@/shared/api"
+import { useGetPlaylistQuery, useGetPlaylistTracksQuery } from "@/shared/api"
 import { PlayButton } from "@/shared/ui/buttons"
 import { MainLayout } from "@/shared/ui/Layouts"
 import { PlaylistPreview } from "@/widgets/playlist-preview"
@@ -12,12 +12,15 @@ import { onTrackResize } from "./lib"
 
 const Playlist = () => {
 	const {id} = useParams()
+	console.log(id)
 	const [grids, setGrids] = useState<string>()
 	const {data: playlist, isLoading} = useGetPlaylistQuery({playlist_id:id})
+	const {data: playlistTracks, isLoading:tracksLoading} = useGetPlaylistTracksQuery({playlist_id: id})
 	const { width, ref } = useResizeDetector({
 		handleHeight: false,
 		onResize: (width) => onTrackResize(width, setGrids)
 	  });
+	console.log(playlistTracks)
 	return (
 		<MainLayout Sidebar={Sidebar}>
 			<PlaylistPreview url={playlist?.images[0].url}
@@ -41,7 +44,7 @@ const Playlist = () => {
 					</div>
 				</div>
 				<div className="max-w-[2100px]">
-					{playlist?.tracks?.items.map(({added_at, track}:any, id:number) => {
+					{playlistTracks?.items.map(({added_at, track}:any, id:number) => {
 						return (
 							<Fragment key={id}>
 								<TrackCard width={width} grids={grids} added_at={added_at} id={id} track={track}/>

@@ -34,11 +34,11 @@ export const routes: Record<AppRoutes, RouteOptions> = {
 	},
 	[AppRoutes.COLLECTION_PLAYLISTS]: {
 		path: RoutePath.collection_playlists,
-		Element: <CollectionPlaylists/>
+		Element: <WithAuth><CollectionPlaylists/></WithAuth>
 	},
 	[AppRoutes.Playlist]: {
 		path: RoutePath.playlist,
-		Element: <Playlist/>
+		Element: <WithAuth><Playlist/></WithAuth>
 	}
 }
 

@@ -28,17 +28,17 @@ export const spotifyApi = createApi({
     }),
     getPlaylist: builder.query<any, { playlist_id?: string }>({
       query: ({ playlist_id }) => ({
-        url: `playlists/${playlist_id}`,
+        url: `playlists/${playlist_id}?fields=description,name,owner,type,uri,images,tracks(total)`,
       }),
-      serializeQueryArgs: ({ endpointName }) => {
-        return endpointName;
-      },
-      merge: ({ currentCache, newItem }) => {
-        currentCache.push(...newItem);
-      },
-      forceRefetch({ currentArg, previousArg }) {
-        return currentArg !== previousArg;
-      },
+    }),
+    getPlaylistTracks: builder.query<
+      any,
+      { playlist_id?: string; limit?: number }
+    >({
+      query: ({ playlist_id, limit = 25 }) => ({
+        url: `playlists/${playlist_id}/tracks`,
+        params: { limit },
+      }),
     }),
   }),
 });
@@ -48,4 +48,5 @@ export const {
   useGetFeaturedPlaylistsQuery,
   useGetFollowedTracksQuery,
   useGetPlaylistQuery,
+  useGetPlaylistTracksQuery,
 } = spotifyApi;
