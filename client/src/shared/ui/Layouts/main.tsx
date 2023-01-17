@@ -4,10 +4,11 @@ import './style.css'
 
 interface Layout {
 	Sidebar: ElementType,
-	children: ReactNode
+	children: ReactNode,
+	Footer: ElementType
 }
 
-export const MainLayout = ({Sidebar, children}:Layout) => {
+export const MainLayout = ({Sidebar, children, Footer}:Layout) => {
 	return (
 		<div className="h-screen w-full main relative">
 				<Sidebar/>
@@ -19,9 +20,9 @@ export const MainLayout = ({Sidebar, children}:Layout) => {
 						</div>
 					</div>
 				</div>
-			<footer className="footer">
-				asd;ofasdf
-			</footer>
+				<div className='footer'>
+					<Footer/>
+				</div>
 		</div>
 	)
 }

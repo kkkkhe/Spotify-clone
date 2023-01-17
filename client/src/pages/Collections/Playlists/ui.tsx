@@ -2,6 +2,7 @@ import { useGetFollowedTracksQuery, useGetPersonalPlaylistsQuery } from "@/share
 import { Card } from "@/shared/ui/card"
 import { MainLayout } from "@/shared/ui/Layouts"
 import { CardSkeleton } from "@/shared/ui/skeleton"
+import { Footer } from "@/widgets/Footer"
 import { Sidebar } from "@/widgets/Sidebar"
 import ContentLoader from "react-content-loader"
 import { FollowedSkeleton } from "./ui/followed-skeleton"
@@ -15,7 +16,7 @@ export const CollectionPlaylists = () => {
 	const skeletonArray = new Array(13).fill(0)
 	console.log(personalPlaylists?.items?.length)
 	return (
-		<MainLayout Sidebar={Sidebar}>
+		<MainLayout Sidebar={Sidebar} Footer={Footer}>
 			<div className="px-8 py-6 max-w-[2100px]">
 			<h2 className="text-[32px] mb-3 font-bold">Playlists</h2>
 				<div>

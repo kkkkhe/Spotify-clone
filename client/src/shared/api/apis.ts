@@ -7,6 +7,7 @@ export const spotifyApi = createApi({
   baseQuery: axiosBaseQuery({
     baseUrl: import.meta.env.VITE_BASEURL,
   }),
+
   endpoints: (builder) => ({
     getPersonalPlaylists: builder.query<PlaylistResponse, { limit?: number }>({
       query: ({ limit }) => ({
@@ -14,6 +15,7 @@ export const spotifyApi = createApi({
         params: { limit },
       }),
     }),
+
     getFeaturedPlaylists: builder.query<any, { limit?: number }>({
       query: ({ limit }) => ({
         url: "browse/featured-playlists",
@@ -26,11 +28,13 @@ export const spotifyApi = createApi({
         params: { limit },
       }),
     }),
+
     getPlaylist: builder.query<any, { playlist_id?: string }>({
       query: ({ playlist_id }) => ({
         url: `playlists/${playlist_id}?fields=description,name,owner,type,uri,images,tracks(total)`,
       }),
     }),
+
     getPlaylistTracks: builder.query<
       any,
       { playlist_id?: string; limit?: number }
@@ -40,13 +44,43 @@ export const spotifyApi = createApi({
         params: { limit },
       }),
     }),
+
+    setPlayback: builder.mutation({
+      query: () => ({
+        url: "me/player/play",
+        method: "PUT",
+        params: { device_id: "e1d920ccebfd1c3c9061bfee4621aeb6d970da3b" },
+        data: { "context_uri": "spotify:track:4E939qrktCtjkixFqOZIjq" },
+      }),
+    }),
+
+    getCurrentDevice: builder.query({
+      query: () => ({
+        url: "me/player/devices",
+      }),
+    }),
+
+    getCurrentPlaying: builder.query({
+      query: () => ({
+        url: "me/player",
+      }),
+    }),
   }),
 });
-
+// {
+//   "context_uri": "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
+// "offset": {
+//   "position": 5
+// },
+//   "position_ms": 0
+// }
 export const {
   useGetPersonalPlaylistsQuery,
   useGetFeaturedPlaylistsQuery,
   useGetFollowedTracksQuery,
   useGetPlaylistQuery,
   useGetPlaylistTracksQuery,
+  useSetPlaybackMutation,
+  useGetCurrentDeviceQuery,
+  useGetCurrentPlayingQuery,
 } = spotifyApi;

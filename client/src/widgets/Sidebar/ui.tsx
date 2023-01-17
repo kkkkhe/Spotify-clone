@@ -11,7 +11,7 @@ export const Sidebar = memo(() => {
 	//[#b1b1b1ab]
 	return (
 		<Resizable
-		className='bg-black flex flex-col sidebar relative z-[4] before:content-[""] before:w-[6px] before:z-20 before:h-full before:absolute before:right-0 before:hover:border-r-[1px] before:border-[#b1b1b1ab]'
+		className='bg-black flex flex-col sidebar relative z-[4] before:content-[""] before:w-[6px] before:h-full before:absolute before:right-0 before:hover:border-r-[1px] before:border-[#b1b1b1ab]'
 		size={{ width: state.width, height: '100%'}}
 		maxWidth={300}
 		minWidth={120}

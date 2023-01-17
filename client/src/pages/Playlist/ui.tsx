@@ -1,10 +1,12 @@
-import { useGetPlaylistQuery, useGetPlaylistTracksQuery } from "@/shared/api"
+import { useGetCurrentDeviceQuery, useGetPlaylistQuery, useGetPlaylistTracksQuery, useSetPlaybackMutation } from "@/shared/api"
 import { PlayButton } from "@/shared/ui/buttons"
 import { MainLayout } from "@/shared/ui/Layouts"
+import { Footer } from "@/widgets/Footer"
 import { PlaylistPreview } from "@/widgets/playlist-preview"
 import { Sidebar } from "@/widgets/Sidebar"
 import { TrackCard } from "@/widgets/track-card"
-import { Fragment, useState } from "react"
+import axios from "axios"
+import { Fragment, useEffect, useState } from "react"
 import { useResizeDetector } from "react-resize-detector"
 import { useLocation, useParams } from "react-router-dom"
 import { WatchSvg } from "./assets"
@@ -12,17 +14,22 @@ import { onTrackResize } from "./lib"
 
 const Playlist = () => {
 	const {id} = useParams()
-	console.log(id)
 	const [grids, setGrids] = useState<string>()
 	const {data: playlist, isLoading} = useGetPlaylistQuery({playlist_id:id})
 	const {data: playlistTracks, isLoading:tracksLoading} = useGetPlaylistTracksQuery({playlist_id: id})
+	const {data} = useGetCurrentDeviceQuery({})
+	console.log(playlistTracks)
+	const [trigger] = useSetPlaybackMutation()
+	useEffect(() => {
+		trigger({})
+	}, [])
+	// console.log(a)
 	const { width, ref } = useResizeDetector({
 		handleHeight: false,
 		onResize: (width) => onTrackResize(width, setGrids)
 	  });
-	console.log(playlistTracks)
 	return (
-		<MainLayout Sidebar={Sidebar}>
+		<MainLayout Sidebar={Sidebar} Footer={Footer}>
 			<PlaylistPreview url={playlist?.images[0].url}
 			name={playlist?.name}
 			owner={playlist?.owner.display_name}
