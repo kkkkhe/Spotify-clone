@@ -65,15 +65,15 @@ export const spotifyApi = createApi({
         url: "me/player",
       }),
     }),
+
+    seekPosition: builder.mutation<any, { pos: number }>({
+      query: ({ pos }) => ({
+        url: "me/player/seek",
+        params: { position_ms: pos },
+      }),
+    }),
   }),
 });
-// {
-//   "context_uri": "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
-// "offset": {
-//   "position": 5
-// },
-//   "position_ms": 0
-// }
 export const {
   useGetPersonalPlaylistsQuery,
   useGetFeaturedPlaylistsQuery,
@@ -83,4 +83,5 @@ export const {
   useSetPlaybackMutation,
   useGetCurrentDeviceQuery,
   useGetCurrentPlayingQuery,
+  useSeekPositionMutation,
 } = spotifyApi;

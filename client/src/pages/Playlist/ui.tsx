@@ -23,7 +23,6 @@ const Playlist = () => {
 	useEffect(() => {
 		trigger({})
 	}, [])
-	// console.log(a)
 	const { width, ref } = useResizeDetector({
 		handleHeight: false,
 		onResize: (width) => onTrackResize(width, setGrids)

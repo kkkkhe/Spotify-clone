@@ -14,7 +14,7 @@ export const Card = ({name, info, images, id, type}:Card) => {
 		<div className="bg-[#181818] rounded-[5px] self-center justify-self-center w-full hover:bg-[#262626] transition-colors duration-150">
 		<Link to={`/${type}/${id}`}>
 			<div className="p-4 h-full items-start flex-col w-full">
-				<div className="aspect-square max-w-[192px] min-w-[150px] h-auto mb-4 flex flex-col">
+				<div className="aspect-square max-w-[192px] min-w-[120px] h-auto mb-4 flex flex-col">
 					<img className="w-full h-full object-cover rounded-[5px]" src={images[0].url} alt="image" />
 				</div>
 				<div className="flex flex-col items-start justify-start">
